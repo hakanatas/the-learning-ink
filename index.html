@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Learning Ink · Öğrenen Mürekkep</title>
+<link rel="stylesheet" href="css/ui.css">
+</head>
+<body>
+<div id="app">
+  <header class="top">
+    <div class="seal" aria-hidden="true"><span>N</span></div>
+    <div class="titles">
+      <h1>The Learning Ink <em>Öğrenen Mürekkep</em></h1>
+      <p>How a neural network learns — a 90-second ink film · Bir sinir ağı nasıl öğrenir</p>
+    </div>
+    <div class="now">
+      <div class="now-scene" id="sceneName">—</div>
+      <div class="now-concept" id="sceneConcept">—</div>
+    </div>
+  </header>
+
+  <main class="stage" id="stage">
+    <div class="frame" id="frame"><canvas id="film" width="1920" height="1080"></canvas>
+      <div class="loading" id="loading">mürekkep hazırlanıyor · preparing ink…</div>
+    </div>
+  </main>
+
+  <section class="controls">
+    <div class="row transport">
+      <button id="restart" class="icon" title="Restart (Home)" aria-label="Restart">
+        <svg viewBox="0 0 24 24"><path d="M6 5v14M19 5 9 12l10 7z"/></svg></button>
+      <button id="play" class="play" title="Play / Pause (Space)" aria-label="Play">
+        <svg class="i-play" viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z"/></svg>
+        <svg class="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></svg></button>
+      <div class="time"><span id="tc">00:00.00</span><small>/ 01:30.00</small></div>
+      <div class="scrub" id="scrub">
+        <div class="track"><div class="fill" id="fill"></div></div>
+        <div class="markers" id="markers"></div>
+        <div class="head" id="head"></div>
+      </div>
+    </div>
+    <div class="row options">
+      <label class="grp"><span>Sahne · Scene</span><div class="seg" id="scenes"></div></label>
+      <label class="grp"><span>Hız · Speed</span><div class="seg" id="speeds"></div></label>
+      <label class="grp"><span>Biçim · Format</span><div class="seg" id="formats"></div></label>
+      <label class="grp"><span>Altyazı · Captions</span><div class="seg" id="caps"></div></label>
+      <button id="srt" class="ghost" title="Download subtitles for the current caption mode">.srt ↓</button>
+      <button id="png" class="ghost" title="Save the current frame as PNG">kare · frame ↓</button>
+    </div>
+  </section>
+</div>
+
+<!-- engine -->
+<script src="src/core/rng.js"></script>
+<script src="src/core/ease.js"></script>
+<script src="src/core/camera.js"></script>
+<script src="src/core/timeline.js"></script>
+<script src="src/core/fonts.js"></script>
+<!-- ink -->
+<script src="src/ink/paper.js"></script>
+<script src="src/ink/brush.js"></script>
+<script src="src/ink/captions-draw.js"></script>
+<!-- data + real neural network -->
+<script src="src/ml/sketches.js"></script>
+<script src="src/ml/mlp.js"></script>
+<!-- drawing modules -->
+<script src="src/draw/ambient.js"></script>
+<script src="src/draw/sheet.js"></script>
+<script src="src/draw/hand.js"></script>
+<script src="src/draw/network.js"></script>
+<script src="src/draw/landscape.js"></script>
+<script src="src/draw/nokta.js"></script>
+<script src="src/draw/world.js"></script>
+<!-- editable content -->
+<script src="captions.js"></script>
+<script src="scenes/scene1.js"></script>
+<script src="scenes/scene2.js"></script>
+<script src="scenes/scene3.js"></script>
+<script src="scenes/scene4.js"></script>
+<script src="scenes/scene5.js"></script>
+<script src="scenes/scene6.js"></script>
+<script src="scenes/scene7.js"></script>
+<!-- preview UI -->
+<script src="src/ui/player.js"></script>
+</body>
+</html>
