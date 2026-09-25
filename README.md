@@ -2,8 +2,9 @@
 
 ![Nokta holds the amber light of its first correct guess](docs/poster.jpg)
 
-**▶ Filmi tarayıcıda izleyin / Watch in the browser:** https://hakanatas.github.io/the-learning-ink/
-**⬇ MP4 + altyazılar / MP4 + subtitles:** [Releases](https://github.com/hakanatas/the-learning-ink/releases)
+**▶ Filmi tarayıcıda izleyin / Watch in the browser:** https://hakanatas.github.io/the-learning-ink/<br>
+**⬇ MP4 + altyazılar / MP4 + subtitles:** [Releases](https://github.com/hakanatas/the-learning-ink/releases)<br>
+**✎ Kullanılan istem / The prompt behind it:** [PROMPT.md](PROMPT.md)
 
 > **TR —** Yapay zekânın (bir sinir ağının) nasıl öğrendiğini 12–17 yaş öğrencilere anlatan, tamamen JavaScript ile çizilmiş 90 saniyelik bir mürekkep filmi. Minik mürekkep yaratığı **Nokta** veri görür, yanılır, düzeltilir ve öğrenir; sonunda hiç görmediği bir kuşu tanır ama verisinin dışında kendinden emin şekilde yanılabileceğini de gösterir. Filmdeki sinir ağı gerçektir: sayfa açılırken eğitilir. Altyazılar Türkçe, İngilizce ya da ikisi birlikte seçilebilir; öğretmenler seslendirme ekleyebilsin diye `.srt` dosyaları ve anlatım notları da vardır.
 
