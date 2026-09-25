@@ -1,0 +1,110 @@
+/* Preview UI — sumi-ink surround, paper-toned type, a vermilion seal accent.
+   (The film itself is black ink + one amber moment; the red lives only in the UI.) */
+:root {
+  --ink: #12100e;
+  --ink-2: #1c1916;
+  --ink-3: #2a2521;
+  --paper: #efe7d6;
+  --paper-dim: #a79d8b;
+  --seal: #c4432b;
+  --seal-soft: rgba(196, 67, 43, .18);
+  --rule: rgba(239, 231, 214, .12);
+  --f-serif: "LI Serif", "Iowan Old Style", Georgia, serif;
+  --f-mono: "LI Mono", ui-monospace, Menlo, Consolas, monospace;
+  --f-brush: "LI Brush", "Segoe Print", cursive;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  background:
+    radial-gradient(1200px 700px at 50% 35%, rgba(239,231,214,.045), transparent 70%),
+    repeating-linear-gradient(115deg, rgba(255,255,255,.012) 0 2px, transparent 2px 7px),
+    var(--ink);
+  color: var(--paper);
+  font-family: var(--f-serif);
+  overflow: hidden;
+}
+#app { display: grid; grid-template-rows: auto 1fr auto; height: 100vh; height: 100dvh; }
+
+.top { display: flex; align-items: center; gap: 18px; padding: 14px 24px 10px; border-bottom: 1px solid var(--rule); }
+.seal { width: 42px; height: 42px; background: var(--seal); display: grid; place-items: center; border-radius: 4px 7px 5px 6px; transform: rotate(-4deg); box-shadow: inset 0 0 0 2px rgba(255,255,255,.12); flex: none; }
+.seal span { font-family: var(--f-brush); font-size: 30px; color: #f7e9dc; line-height: 1; margin-top: 2px; }
+.titles h1 { margin: 0; font-weight: 600; font-size: 21px; letter-spacing: .01em; }
+.titles h1 em { font-weight: 400; color: var(--paper-dim); margin-left: 8px; }
+.titles p { margin: 2px 0 0; font-size: 13px; color: var(--paper-dim); font-style: italic; }
+.now { margin-left: auto; text-align: right; min-width: 0; }
+.now-scene { font-size: 16px; white-space: nowrap; }
+.now-scene b { font-family: var(--f-mono); font-weight: 400; color: var(--seal); margin-right: 6px; }
+.now-scene em, .now-concept em { color: var(--paper-dim); }
+.now-concept { font-size: 13px; font-style: italic; margin-top: 2px; }
+
+.stage { position: relative; display: grid; place-items: center; padding: 18px 24px; min-height: 0; min-width: 0; overflow: hidden; }
+.frame { position: relative; box-shadow: 0 30px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(239,231,214,.08); animation: rise .9s cubic-bezier(.2,.8,.2,1) both; }
+.frame canvas { width: 100%; height: 100%; display: block; }
+.loading { position: absolute; inset: 0; display: grid; place-items: center; background: var(--paper); color: var(--ink); font-family: var(--f-brush); font-size: 30px; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px) scale(.985); } to { opacity: 1; transform: none; } }
+
+.controls { padding: 10px 24px 16px; border-top: 1px solid var(--rule); background: linear-gradient(to bottom, rgba(0,0,0,.25), transparent); }
+.row { display: flex; align-items: center; gap: 16px; }
+.row + .row { margin-top: 12px; }
+.options { flex-wrap: wrap; gap: 10px 22px; }
+.controls > .row:nth-child(1) { animation: rise .7s .15s both; }
+.controls > .row:nth-child(2) { animation: rise .7s .3s both; }
+
+button { font: inherit; color: inherit; cursor: pointer; }
+.icon, .play { background: none; border: 1px solid var(--rule); border-radius: 50%; width: 38px; height: 38px; display: grid; place-items: center; flex: none; }
+.play { width: 50px; height: 50px; background: var(--paper); color: var(--ink); border: none; }
+.play:hover { background: #fff6e6; }
+.icon:hover { border-color: var(--paper-dim); }
+svg { width: 20px; height: 20px; fill: currentColor; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.icon svg path { fill: none; }
+.play .i-pause { display: none; fill: none; stroke-width: 3; }
+.playing .play .i-play { display: none; }
+.playing .play .i-pause { display: block; }
+
+.time { font-family: var(--f-mono); font-size: 15px; white-space: nowrap; flex: none; }
+.time small { color: var(--paper-dim); margin-left: 4px; font-size: 12px; }
+
+.scrub { position: relative; flex: 1; min-width: 0; height: 44px; cursor: pointer; touch-action: none; }
+.track { position: absolute; left: 0; right: 0; top: 24px; height: 4px; background: var(--ink-3); border-radius: 2px; overflow: hidden; }
+.fill { height: 100%; width: 0; background: var(--seal); }
+.head { position: absolute; top: 16px; width: 4px; height: 20px; margin-left: -2px; background: var(--paper); border-radius: 2px; pointer-events: none; }
+.markers { position: absolute; inset: 0; }
+.mk { position: absolute; top: 0; bottom: 0; width: 22px; margin-left: -1px; background: none; border: 0; padding: 0; text-align: left; }
+.mk i { position: absolute; left: 0; top: 18px; width: 2px; height: 16px; background: var(--paper-dim); opacity: .6; }
+.mk b { position: absolute; left: 5px; top: 0; font-family: var(--f-mono); font-weight: 400; font-size: 10px; color: var(--paper-dim); }
+.mk:hover b { color: var(--paper); }
+
+.grp { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--paper-dim); font-style: italic; }
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 999px; padding: 2px; font-style: normal; }
+.seg button { background: none; border: 0; border-radius: 999px; padding: 4px 10px; font-family: var(--f-mono); font-size: 12px; color: var(--paper-dim); }
+.seg button:hover { color: var(--paper); }
+.seg button.on { background: var(--paper); color: var(--ink); }
+.ghost { background: none; border: 1px dashed var(--rule); border-radius: 999px; padding: 5px 12px; font-family: var(--f-mono); font-size: 12px; color: var(--paper-dim); }
+.ghost:hover { border-color: var(--seal); color: var(--paper); background: var(--seal-soft); }
+
+/* export / render mode: nothing but the canvas at native size */
+body.render { background: #000; overflow: hidden; }
+body.render .top, body.render .controls, body.render .loading { display: none; }
+body.render #app { display: block; height: auto; }
+body.render .stage { padding: 0; display: block; }
+body.render .frame { box-shadow: none; animation: none; width: auto !important; height: auto !important; }
+body.render .frame canvas { width: auto; height: auto; }
+
+#app { min-width: 0; }
+.titles { min-width: 0; }
+@media (max-width: 760px) {
+  body { overflow: auto; }
+  #app { height: auto; min-height: 100vh; }
+  .stage { min-height: 56vw; }
+  .titles h1 { font-size: 18px; }
+  .titles h1 em { display: block; margin-left: 0; }
+  .titles p { display: none; }
+  .top { padding: 10px 16px; flex-wrap: wrap; }
+  .now { margin-left: 0; text-align: left; width: 100%; }
+  .stage { padding: 10px 16px; }
+  .controls { padding: 8px 16px 12px; }
+  .grp > span { display: none; }
+  .time small { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .frame, .controls > .row { animation: none; } }
